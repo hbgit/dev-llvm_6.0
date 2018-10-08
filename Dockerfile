@@ -21,7 +21,7 @@ RUN tar -xf llvm-6.0.0.src.tar.xz
 RUN tar -xf cfe-6.0.0.src.tar.xz
 RUN tar -xf compiler-rt-6.0.0.src.tar.xz
 RUN mv llvm-6.0.0.src llvm600
-RUN mv cfe-0.0.0.src llvm600/tools/clang
+RUN mv cfe-6.0.0.src llvm600/tools/clang
 RUN mv compiler-rt-6.0.0.src/* llvm600/tools/clang/runtime/compiler-rt
 RUN rm llvm-6.0.0.src.tar.xz
 RUN rm cfe-6.0.0.src.tar.xz
