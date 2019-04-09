@@ -1,3 +1,13 @@
+############################################################
+# Dockerfile to build LLVM 6.0.0 to support map2check base
+# image environment container images based on Ubuntu 16.04
+# Usage:
+#
+#  By gitclone:
+#   $ docker build -t hrocha/dev-llvm_6.0:first --no-cache -f Dockerfile .
+#
+############################################################
+
 FROM ubuntu:16.04
 LABEL maintainer=<herberthb12@gmail.com>
 
@@ -14,7 +24,7 @@ WORKDIR /llvm/src
 # DOWNLOAD SOURCES
 
 ## 6.0.0
-RUN wget http://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz 
+RUN wget http://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz
 RUN wget http://releases.llvm.org/6.0.0/cfe-6.0.0.src.tar.xz
 RUN wget http://releases.llvm.org/6.0.0/compiler-rt-6.0.0.src.tar.xz
 RUN tar -xf llvm-6.0.0.src.tar.xz
@@ -25,10 +35,10 @@ RUN mv cfe-6.0.0.src llvm600/tools/clang
 RUN mv compiler-rt-6.0.0.src/* llvm600/tools/clang/runtime/compiler-rt
 RUN rm llvm-6.0.0.src.tar.xz
 RUN rm cfe-6.0.0.src.tar.xz
-RUN rm compiler-rt-6.0.0.src.tar.xz 
+RUN rm compiler-rt-6.0.0.src.tar.xz
 
 
-# BUILD 
+# BUILD
 WORKDIR /llvm/tmp/llvm600
 RUN cmake /llvm/src/llvm600  -DCMAKE_INSTALL_PREFIX=/llvm/release/llvm600 \
     -G Ninja -DCMAKE_BUILD_TYPE:STRING=Release \
